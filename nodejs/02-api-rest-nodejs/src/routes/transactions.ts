@@ -4,17 +4,31 @@ import { randomUUID } from 'node:crypto'
 import { knex } from '../database'
 import { checkSessionIdExists } from '../middlewares/check-session-id-exists'
 
+// Cookies : formas da gente manter contexto entre requisições
+  
+// Testes Automatizados
+//   - Unitários: unidade da sua aplicação
+
+//   - Integração: comunicação entre duas ou mais unidades
+
+//   - E2E - ponta a ponta: simulam um usuário operando na nossa aplicação
+//     -> front-end: abre a página de login, digita o texto email@example.com no campo email, clique no botão...
+//     -> back-end: chamadas HTTP, WebSockets...
+
+// Pirâmide de testes: E2E (não dependem de nenhuma tecnologia, não dependem de arquitetura)
+//    -> poucos testes E2E
+//    -> mais testes de integração
+//    -> muitos testes unitários
+
 export async function transactionsRoutes(app: FastifyInstance) {
 
   // ao invés de adicionar um preHandler em todas as rotas, podemos utilizar um hook global
-  app.addHook('preHandler', async (request, reply) => {
-
-  })
-
-  // Cookies : formas da gente manter contexto entre requisições
-  // preHandler : funções que são executadas antes do Handler (função que lida com o funcionamento da rota)
+    // app.addHook('preHandler', async (request, reply) => {
+    //   console.log(`[${request.method}], ${request.url}`)
+    // })
 
   // rota de listagem das transações
+    // preHandler : funções que são executadas antes do Handler (função que lida com o funcionamento da rota)
   app.get('/', { preHandler: [checkSessionIdExists] }, async (request, reply) => {
 
     const { sessionId } = request.cookies
