@@ -27,9 +27,10 @@ export async function transactionsRoutes(app: FastifyInstance) {
     //   console.log(`[${request.method}], ${request.url}`)
     // })
 
+  // preHandler : funções que são executadas antes do Handler (função que lida com o funcionamento da rota)
+
   // rota de listagem das transações
-    // preHandler : funções que são executadas antes do Handler (função que lida com o funcionamento da rota)
-  app.get('/', { preHandler: [checkSessionIdExists] }, async (request, reply) => {
+  app.get('/', { preHandler: [checkSessionIdExists] }, async (request) => {
 
     const { sessionId } = request.cookies
 

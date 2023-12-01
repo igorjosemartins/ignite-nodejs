@@ -1,4 +1,4 @@
-// definição de tipos
+// definição da tipagem dos dados
 import { StringAsNumber } from 'fastify/types/utils'
 import { Knex } from 'knex'
 
